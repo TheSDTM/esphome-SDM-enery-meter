@@ -1,0 +1,62 @@
+esphome:
+  name: example_sdm_device
+  platform: ESP8266
+  board: esp01_1m
+  includes:
+    - sdm/SDM_Config_User.h
+    - sdm/SDM.h
+    - sdm/sdm_esphome.h
+
+wifi:
+  ssid: "SSID"
+  password: "PASSWORD"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "FALLBACK_SSID"
+    password: "FALLBACK_PASSWORD"
+
+  # manual_ip:
+  #   static_ip: 192.168.2.13
+  #   gateway: 192.168.2.1
+  #   subnet: 255.255.255.0
+
+uart:
+  tx_pin: TX
+  rx_pin: RX
+  baud_rate: 9600
+  stop_bits: 1
+
+sensor:
+- platform: custom
+  lambda: |-
+    auto sdm_sensors = new SDMComponent();
+    App.register_component(sdm_sensors);
+    return {sdm_sensors->voltage_sensor, sdm_sensors->current_sensor, sdm_sensors->power_sensor, sdm_sensors->energy_import_sensor};
+  sensors:
+    - name: "Voltage"
+      unit_of_measurement: V
+      accuracy_decimals: 1
+    - name: "Current"
+      unit_of_measurement: A
+      accuracy_decimals: 1
+    - name: "Power"
+      unit_of_measurement: W
+      accuracy_decimals: 1
+    - name: "Energy import"
+      unit_of_measurement: kWh
+      accuracy_decimals: 1
+
+captive_portal:
+
+logger:
+  baud_rate: 0
+  # level: VERY_VERBOSE
+  esp8266_store_log_strings_in_flash: False
+
+# Enable Home Assistant API
+api:
+  password: "API_PASSWORD"
+
+ota:
+  password: "OTA_PASSWORD"
