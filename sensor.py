@@ -6,7 +6,8 @@ from esphome.const import CONF_ID, \
     UNIT_EMPTY, UNIT_AMPERE, UNIT_HERTZ, UNIT_VOLT, \
     UNIT_VOLT_AMPS, UNIT_VOLT_AMPS_REACTIVE, \
     UNIT_WATT, UNIT_WATT_HOURS, UNIT_PERCENT, \
-    ICON_EMPTY, ICON_PULSE, ICON_POWER, ICON_CURRENT_AC, ICON_FLASH
+    ICON_EMPTY, ICON_PULSE, ICON_POWER, ICON_CURRENT_AC, ICON_FLASH, \
+    ESP_PLATFORM_ESP32
 
 UNIT_KWH = 'kW/h'
 CONF_DERE_PIN = 'dere_pin'
@@ -26,7 +27,7 @@ CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(SDMSensor),
 
     cv.Optional(CONF_BAUD_RATE, default=9600): cv.positive_not_null_int,
-    cv.Optional(CONF_DERE_PIN, default=-1): cv.int,
+    cv.Optional(CONF_DERE_PIN, default=-1): cv.int_range,
     cv.Optional(CONF_RX_PIN, default=3): cv.positive_int,
     cv.Optional(CONF_TX_PIN, default=1): cv.positive_int,
     cv.Optional(CONF_CHANNEL, default=1): cv.positive_not_null_int,
