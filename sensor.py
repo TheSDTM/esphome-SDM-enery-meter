@@ -27,7 +27,7 @@ CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(SDMSensor),
 
     cv.Optional(CONF_BAUD_RATE, default=9600): cv.positive_not_null_int,
-    cv.Optional(CONF_DERE_PIN, default=-1): cv.int_range,
+    cv.Optional(CONF_DERE_PIN, default=-1): cv.int_range(),
     cv.Optional(CONF_RX_PIN, default=3): cv.positive_int,
     cv.Optional(CONF_TX_PIN, default=1): cv.positive_int,
     cv.Optional(CONF_CHANNEL, default=1): cv.positive_not_null_int,
@@ -55,13 +55,13 @@ def to_code(config):
 
     if CONF_SDM120CT_CURRENT in config:
         sens = yield sensor.new_sensor(config[CONF_SDM120CT_CURRENT])
-        cg.add(var.set_sdm120ct_voltage(sens))
+        cg.add(var.set_sdm120ct_current(sens))
 
     if CONF_SDM120CT_POWER in config:
         sens = yield sensor.new_sensor(config[CONF_SDM120CT_POWER])
-        cg.add(var.set_sdm120ct_voltage(sens))
+        cg.add(var.set_sdm120ct_power(sens))
         
     if CONF_SDM120CT_IMPORT_ACTIVE_ENERGY in config:
         sens = yield sensor.new_sensor(config[CONF_SDM120CT_IMPORT_ACTIVE_ENERGY])
-        cg.add(var.set_sdm120ct_voltage(sens))
+        cg.add(var.set_import_active_energy(sens))
 
