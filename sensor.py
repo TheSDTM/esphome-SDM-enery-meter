@@ -12,10 +12,10 @@ from esphome.const import CONF_ID, \
 UNIT_KWH = 'kW/h'
 CONF_DERE_PIN = 'dere_pin'
 
-CONF_SDM120CT_VOLTAGE = 'SDM120CT_voltage'
-CONF_SDM120CT_CURRENT = 'SDM120CT_current'
-CONF_SDM120CT_POWER = 'SDM120CT_power'
-CONF_SDM120CT_IMPORT_ACTIVE_ENERGY = 'SDM120CT_import_active_energy'
+CONF_SDM_PHASE_1_VOLTAGE = 'sdm_phase_1_voltage'
+CONF_SDM_PHASE_1_CURRENT = 'sdm_phase_1_current'
+CONF_SDM_PHASE_1_POWER = 'sdm_phase_1_power'
+CONF_SDM_IMPORT_ACTIVE_ENERGY = 'sdm_import_active_energy'
 
 ESP_PLATFORMS = [ESP_PLATFORM_ESP32]
 
@@ -32,10 +32,10 @@ CONFIG_SCHEMA = cv.Schema({
     cv.Optional(CONF_TX_PIN, default=1): cv.positive_int,
     cv.Optional(CONF_CHANNEL, default=1): cv.positive_not_null_int,
 
-    cv.Optional(CONF_SDM120CT_VOLTAGE): sensor.sensor_schema(UNIT_VOLT, ICON_CURRENT_AC, 1),
-    cv.Optional(CONF_SDM120CT_CURRENT): sensor.sensor_schema(UNIT_AMPERE, ICON_CURRENT_AC, 1),
-    cv.Optional(CONF_SDM120CT_POWER): sensor.sensor_schema(UNIT_WATT, ICON_POWER, 1),
-    cv.Optional(CONF_SDM120CT_IMPORT_ACTIVE_ENERGY): sensor.sensor_schema(UNIT_KWH, ICON_FLASH, 1),
+    cv.Optional(CONF_SDM_PHASE_1_VOLTAGE): sensor.sensor_schema(UNIT_VOLT, ICON_CURRENT_AC, 1),
+    cv.Optional(CONF_SDM_PHASE_1_CURRENT): sensor.sensor_schema(UNIT_AMPERE, ICON_CURRENT_AC, 1),
+    cv.Optional(CONF_SDM_PHASE_1_POWER): sensor.sensor_schema(UNIT_WATT, ICON_POWER, 1),
+    cv.Optional(CONF_SDM_IMPORT_ACTIVE_ENERGY): sensor.sensor_schema(UNIT_KWH, ICON_FLASH, 1),
 
 }).extend(cv.polling_component_schema('10s'))
 
@@ -49,19 +49,19 @@ def to_code(config):
     cg.add(var.set_tx_pin(config[CONF_TX_PIN]))
     cg.add(var.set_channel(config[CONF_CHANNEL]))
 
-    if CONF_SDM120CT_VOLTAGE in config:
-        sens = yield sensor.new_sensor(config[CONF_SDM120CT_VOLTAGE])
-        cg.add(var.set_sdm120ct_voltage(sens))
+    if CONF_SDM_PHASE_1_VOLTAGE in config:
+        sens = yield sensor.new_sensor(config[CONF_SDM_PHASE_1_VOLTAGE])
+        cg.add(var.set_sdm_phase_1_voltage(sens))
 
-    if CONF_SDM120CT_CURRENT in config:
-        sens = yield sensor.new_sensor(config[CONF_SDM120CT_CURRENT])
-        cg.add(var.set_sdm120ct_current(sens))
+    if CONF_SDM_PHASE_1_CURRENT in config:
+        sens = yield sensor.new_sensor(config[CONF_SDM_PHASE_1_CURRENT])
+        cg.add(var.set_sdm_phase_1_current(sens))
 
-    if CONF_SDM120CT_POWER in config:
-        sens = yield sensor.new_sensor(config[CONF_SDM120CT_POWER])
-        cg.add(var.set_sdm120ct_power(sens))
+    if CONF_SDM_PHASE_1_POWER in config:
+        sens = yield sensor.new_sensor(config[CONF_SDM_PHASE_1_POWER])
+        cg.add(var.set_sdm_phase_1_power(sens))
         
-    if CONF_SDM120CT_IMPORT_ACTIVE_ENERGY in config:
-        sens = yield sensor.new_sensor(config[CONF_SDM120CT_IMPORT_ACTIVE_ENERGY])
+    if CONF_SDM_IMPORT_ACTIVE_ENERGY in config:
+        sens = yield sensor.new_sensor(config[CONF_SDM_IMPORT_ACTIVE_ENERGY])
         cg.add(var.set_import_active_energy(sens))
 

@@ -35,10 +35,10 @@ namespace sdm_sensor {
     INODE_SET_METHOD(int8_t, channel, 1);
 
     //TODO change sensors and variables to match
-    INODE_SET_METHOD(esphome::sensor::Sensor *, sdm120ct_voltage, 0);
-    INODE_SET_METHOD(esphome::sensor::Sensor *, sdm120ct_current, 0);
-    INODE_SET_METHOD(esphome::sensor::Sensor *, sdm120ct_power, 0);
-    INODE_SET_METHOD(esphome::sensor::Sensor *, sdm120ct_import_active_energy, 0);
+    INODE_SET_METHOD(esphome::sensor::Sensor *, sdm_phase_1_voltage, 0);
+    INODE_SET_METHOD(esphome::sensor::Sensor *, sdm_phase_1_current, 0);
+    INODE_SET_METHOD(esphome::sensor::Sensor *, sdm_phase_1_power, 0);
+    INODE_SET_METHOD(esphome::sensor::Sensor *, sdm_import_active_energy, 0);
   };
 } //namespace sdm_sensor
 } //namespace esphome

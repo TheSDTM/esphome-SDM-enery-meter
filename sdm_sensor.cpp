@@ -25,10 +25,10 @@ void SDMSensor::setup() {
 void SDMSensor::update() {
 	ESP_LOGD(TAG, "Start reading");
 
-	INODE_READ_PUBLISH(this->sdm120ct_voltage, 				SDM_PHASE_1_VOLTAGE);
-	INODE_READ_PUBLISH(this->sdm120ct_current, 				SDM_PHASE_1_CURRENT);
-	INODE_READ_PUBLISH(this->sdm120ct_power, 				SDM_PHASE_1_POWER);
-	INODE_READ_PUBLISH(this->sdm120ct_import_active_energy, SDM_IMPORT_ACTIVE_ENERGY);
+	INODE_READ_PUBLISH(this->sdm_phase_1_voltage, 		SDM_PHASE_1_VOLTAGE);
+	INODE_READ_PUBLISH(this->sdm_phase_1_current, 		SDM_PHASE_1_CURRENT);
+	INODE_READ_PUBLISH(this->sdm_phase_1_power, 		SDM_PHASE_1_POWER);
+	INODE_READ_PUBLISH(this->sdm_import_active_energy, 	SDM_IMPORT_ACTIVE_ENERGY);
 
 	ESP_LOGD(TAG, "End reading");
 }
@@ -41,10 +41,10 @@ void SDMSensor::dump_config() {
 	ESP_LOGD(TAG, "RX pin: %i", rx_pin_);
 	ESP_LOGD(TAG, "TX pin: %i", tx_pin_);
 
-	LOG_SENSOR("  ", "sdm120ct_voltage", this->sdm120ct_voltage_);
-	LOG_SENSOR("  ", "sdm120ct_current", this->sdm120ct_current_);
-	LOG_SENSOR("  ", "sdm120ct_power", this->sdm120ct_power_);
-	LOG_SENSOR("  ", "sdm120ct_import_active_energy", this->sdm120ct_import_active_energy_);
+	LOG_SENSOR("  ", "sdm_phase_1_voltage", this->sdm_phase_1_voltage_);
+	LOG_SENSOR("  ", "sdm_phase_1_current", this->sdm_phase_1_current_);
+	LOG_SENSOR("  ", "sdm_phase_1_power", this->sdm_phase_1_power_);
+	LOG_SENSOR("  ", "sdm_import_active_energy", this->sdm_import_active_energy_);
 }
 
 } //namespace sdm_sensor
