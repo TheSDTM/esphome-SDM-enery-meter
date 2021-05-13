@@ -11,20 +11,29 @@ It was developed for SDM630. You may need to change reading registers that suits
 Also here you can find Esphome guide to add new sensors to this code (read "Bonus: Sensors With Multiple Output Values" section): https://esphome.io/components/sensor/custom.html
 
 ```
-# Disable logging
+# disable logging
 logger:
   baud_rate: 0
 
+# uart setup
 uart:
   tx_pin: TX
   rx_pin: RX
   baud_rate: 9600
   stop_bits: 1
 
+# sdm sensor component setup
 sensor:
 - platform: sdm
-  dere_pin: 16
+
+  # optional parameters with defaults
   baud_rate: 9600
+  tx_pin: TX
+  rx_pin: RX
+  channel: 1
+  dere_pin: -1 # -1 is disabled
+
+  # sdm registers to read and report
   sdm_phase_1_voltage:
     name: "Voltage"
   sdm_phase_1_current:
