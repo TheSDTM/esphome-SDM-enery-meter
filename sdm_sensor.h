@@ -2,8 +2,8 @@
 
 #include "esphome/core/component.h"
 #include "esphome/components/sensor/sensor.h"
-#include "sdm/SDM_Config_User.h"
-#include "sdm/SDM.h"
+
+class SDM;
 
 #define INODE_SET_METHOD(type, name, default) \
   type name##_{default}; \
@@ -23,6 +23,8 @@ namespace sdm_sensor {
     void update() override;
     void dump_config() override;
     float get_setup_priority() const override { return esphome::setup_priority::DATA; }
+
+    float readVal(uint16_t reg);
 
     SDM *sdm;
     INODE_SET_METHOD(long, baud, 9600);

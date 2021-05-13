@@ -1,6 +1,7 @@
+#pragma once
 /* Library for reading SDM 72/120/220/230/630 Modbus Energy meters.
 *  Reading via Hardware or Software Serial library & rs232<->rs485 converter
-*  2016-2019 Reaper7 (tested on wemos d1 mini->ESP8266 with Arduino 1.8.10 & 2.5.2 esp8266 core)
+*  2016-2020 Reaper7 (tested on wemos d1 mini->ESP8266 with Arduino 1.8.10 & 2.5.2 esp8266 core)
 *  crc calculation by Jaime García (https://github.com/peninquen/Modbus-Energy-Monitor-Arduino/)
 */
 
@@ -40,7 +41,7 @@
     #define SDM_TX_PIN                        15
   #else
     #define SDM_RX_PIN                        10
-    #define SDM_TX_PIN                        11  
+    #define SDM_TX_PIN                        11
   #endif
 #endif
 
@@ -49,7 +50,7 @@
 /*
 *  define user DERE_PIN for control MAX485 DE/RE lines (connect DE & /RE together to this pin)
 */
-//#define DERE_PIN                            NOT_A_PIN                           
+//#define DERE_PIN                            NOT_A_PIN
 
 //------------------------------------------------------------------------------
 
@@ -79,8 +80,15 @@
 //------------------------------------------------------------------------------
 
 /*
-*  define user MAX_MILLIS_TO_WAIT to wait for response from SDM
+*  define user WAITING_TURNAROUND_DELAY time in ms to wait for process current request
 */
-//#define MAX_MILLIS_TO_WAIT                  500
+//#define WAITING_TURNAROUND_DELAY            200
+
+//------------------------------------------------------------------------------
+
+/*
+*  define user RESPONSE_TIMEOUT time in ms to wait for return response from all devices before next request
+*/
+//#define RESPONSE_TIMEOUT                    500
 
 //------------------------------------------------------------------------------
