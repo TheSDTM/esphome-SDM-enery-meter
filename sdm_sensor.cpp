@@ -19,6 +19,7 @@ float SDMSensor::readVal(uint16_t reg) {
 }
 void SDMSensor::setup() {
 	sdm = new SDM(Serial, baud_, dere_pin_, SERIAL_8N1, rx_pin_, tx_pin_);
+	sdm->begin();
 	ESP_LOGD(TAG, "Setup completed");
 }
 
@@ -40,6 +41,7 @@ void SDMSensor::dump_config() {
 	ESP_LOGD(TAG, "DeRe pin: %i", dere_pin_);
 	ESP_LOGD(TAG, "RX pin: %i", rx_pin_);
 	ESP_LOGD(TAG, "TX pin: %i", tx_pin_);
+	ESP_LOGD(TAG, "Channel: %i", channel_);
 
 	LOG_SENSOR("  ", "sdm_phase_1_voltage", this->sdm_phase_1_voltage_);
 	LOG_SENSOR("  ", "sdm_phase_1_current", this->sdm_phase_1_current_);
