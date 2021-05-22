@@ -10,7 +10,7 @@ It was developed for SDM630. You may need to change reading registers that suits
 
 Also here you can find Esphome guide to add new sensors to this code (read "Bonus: Sensors With Multiple Output Values" section): https://esphome.io/components/sensor/custom.html
 
-```
+``` YAML
 # disable logging
 logger:
   baud_rate: 0
