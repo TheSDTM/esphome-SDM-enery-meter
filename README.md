@@ -1,16 +1,33 @@
 # Esphome SDM enery meter custom component
 
-This is a fully-working example of reading data from SDM enetry meter (I used SDM630) using device with Esphome firmware (I used Sonoff TH16).
+This is a fully-working example of reading data from SDM enetry meter using device with Esphome firmware.
 
 In this implementation I am using HardwareSerial to read data from SDM, because it's more stable than SoftwareSerial.
 
-You should use TTL to RS485 converter and connect RX port of converter to TX port of Esphome device and TX port of converter to RX port of Esphome device. I used converter like this https://aliexpress.ru/item/32833209309.html
+You should use TTL to RS485 converter and connect RX port of converter to TX port of Esphome device and TX port of converter to RX port of Esphome device.
 
-It was developed for SDM630. You may need to change reading registers that suits your device. You can find all reggisters in sdm/SDM.h file.
+This component uses the SDM library from https://github.com/reaper7/SDM_Energy_Meter
 
-Also here you can find Esphome guide to add new sensors to this code (read "Bonus: Sensors With Multiple Output Values" section): https://esphome.io/components/sensor/custom.html
+## TODO
+
+Not all registers are implemented as sensor yet. Only folowing are currently supported:
+
+- sdm_phase_1_voltage
+- sdm_phase_1_current
+- sdm_phase_1_power
+- sdm_import_active_energy
+
+You can find all registers in SDM.h file.
+
+## Example
+
+### Configuration
 
 ``` YAML
+# load the component
+external_components:
+  - source: github://depuits/esphome-SDM-enery-meter
+
 # disable logging
 logger:
   baud_rate: 0
@@ -31,7 +48,7 @@ sensor:
   tx_pin: TX
   rx_pin: RX
   channel: 1
-  dere_pin: -1 # -1 is disabled
+  dere_pin: 16 # -1 is disabled
 
   # sdm registers to read and report
   sdm_phase_1_voltage:
@@ -44,4 +61,6 @@ sensor:
     name: "Energy import"
 ```
 
-This component uses the SDM library from https://github.com/reaper7/SDM_Energy_Meter
+### Schematic
+
+![Schematic of ESP32 mini using MAX485](Schematic_ESP32_mini_MAX485.png)

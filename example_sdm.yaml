@@ -1,0 +1,50 @@
+esphome:
+  name: house_groundfloor_technical
+  platform: ESP32
+  board: wemos_d1_mini32
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  fast_connect: true
+
+status_led:
+  pin:
+    number: GPIO2
+    inverted: False
+
+# load the component
+external_components:
+  - source: github://depuits/esphome-SDM-enery-meter
+
+# disable logging
+logger:
+  baud_rate: 0
+
+# uart setup
+uart:
+  tx_pin: TX
+  rx_pin: RX
+  baud_rate: 9600
+  stop_bits: 1
+
+# sdm sensor component setup
+sensor:
+- platform: sdm
+
+  # optional parameters with defaults
+  baud_rate: 9600
+  tx_pin: TX
+  rx_pin: RX
+  channel: 1
+  dere_pin: -1 # -1 is disabled
+
+  # sdm registers to read and report
+  sdm_phase_1_voltage:
+    name: "Voltage"
+  sdm_phase_1_current:
+    name: "Current"
+  sdm_phase_1_power:
+    name: "Power"
+  sdm_import_active_energy:
+    name: "Energy import"
