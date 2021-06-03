@@ -155,4 +155,4 @@ sensor:
 | sdm_current_resettable_export_energy         | 0x0186           | kWh         |         |         |         |         |         |    1    |
 | sdm_import_power                             | 0x0500           | W           |         |         |         |         |         |    1    |
 | sdm_export_power                             | 0x0502           | W           |         |         |         |         |         |    1    |
-|
+
