@@ -36,7 +36,7 @@ from esphome.const import (
     STATE_CLASS_MEASUREMENT,
     STATE_CLASS_TOTAL_INCREASING,
     LAST_RESET_TYPE_AUTO,
-    
+
     ESP_PLATFORM_ESP32
 )
 
@@ -158,6 +158,15 @@ CONFIG_SCHEMA = cv.Schema({
     cv.Optional(CONF_TX_PIN, default=1): cv.positive_int,
     cv.Optional(CONF_CHANNEL, default=1): cv.positive_not_null_int,
 
+# fill in schemas like official component https://github.com/esphome/esphome/blob/dev/esphome/components/sdm_meter/sensor.py
+#def sensor_schema(
+#    unit_of_measurement: str = _UNDEF,
+#    icon: str = _UNDEF,
+#    accuracy_decimals: int = _UNDEF,
+#    device_class: str = _UNDEF,
+#    state_class: str = _UNDEF,
+#    last_reset_type: str = _UNDEF,
+#)
     cv.Optional(CONF_SDM_PHASE_1_VOLTAGE                          ): sensor.sensor_schema(UNIT_VOLT                        , ICON_CURRENT_AC, 1),
     cv.Optional(CONF_SDM_PHASE_2_VOLTAGE                          ): sensor.sensor_schema(UNIT_VOLT                        , ICON_CURRENT_AC, 1),
     cv.Optional(CONF_SDM_PHASE_3_VOLTAGE                          ): sensor.sensor_schema(UNIT_VOLT                        , ICON_CURRENT_AC, 1),
