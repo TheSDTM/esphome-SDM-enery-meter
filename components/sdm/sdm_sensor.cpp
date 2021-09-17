@@ -15,6 +15,7 @@ float SDMSensor::readVal(uint16_t reg) {
 		ESP_LOGE(TAG, "Error %i", err);
 	}
 
+	delay(10); // https://github.com/reaper7/SDM_Energy_Meter/issues/7#issuecomment-272080139
 	return val;
 }
 void SDMSensor::setup() {
