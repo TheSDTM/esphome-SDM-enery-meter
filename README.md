@@ -1,5 +1,7 @@
 # Esphome SDM enery meter custom component
 
+**Deprecated by [sdm_meter](https://esphome.io/components/sensor/sdm_meter.html) in esphome.**
+
 This is a fully-working example of reading data from SDM enetry meter using device with Esphome firmware.
 
 In this implementation I am using HardwareSerial to read data from SDM, because it's more stable than SoftwareSerial.
